@@ -1,0 +1,50 @@
+<div class="input-group">
+  <input
+    type="text"
+    class="form-control m-4"
+    [(ngModel)]="searchtext"
+    placeholder="Search Content..........."
+    (input)="onSearchChange($event)"
+    name="browser"
+  />
+  <!-- <button class="btn btn-success" (click)="searchfilter()">Search</button> -->
+</div>
+<!-- -->
+<br />
+
+<ul class="list-group"  *ngIf="!loading" [ngClass]="{'show': !loading}">
+  <li class="list-group-item p-2 m-2 text-center" *ngFor="let data of getalldetails">
+    {{ data?.username }}&nbsp;&nbsp; {{ data?.email }}&nbsp;&nbsp;
+    {{data?.status == true? 'Active':"Inactive"}}&nbsp;&nbsp;
+    {{ data?.mobileNumber }}&nbsp;&nbsp; {{ data?.address }}&nbsp;&nbsp;
+    {{ data?.department }}&nbsp;&nbsp; {{ data?.designation }}&nbsp;&nbsp;
+    {{ data?.createdBy }}&nbsp;&nbsp;
+    {{ data?.createdat | date : "dd-MM-yyyy hh:mm a" }}&nbsp;&nbsp;
+  </li>
+
+  
+</ul>
+  <li [ngClass]="{'show': noDataFound}"
+    class="list-group-item p-2 m-2 text-danger text-center"
+    *ngIf="noDataFound === true"
+  >
+    No data found
+  </li>
+  
+  <div class="d-flex justify-content-center align-items-center"  [ngClass]="{'show': loading}">
+  <button class="btn btn-primary m-2" type="button" *ngIf="loading">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  Loading...
+</button>
+</div>
+
+<mat-paginator
+  (page)="getdatapage($event)"
+  [length]="length"
+  [pageIndex]="pageindex"
+  [pageSize]="pagesizenumber"
+  [pageSizeOptions]="[1,2,3]">
+</mat-paginator>
+
+<button (click)="success()">click</button>
+

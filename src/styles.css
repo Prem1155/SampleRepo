@@ -1,0 +1,37 @@
+.custom-toast {
+  background-color: #444;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Animation override applied to ngx-toastr base class */
+.ngx-toastr {
+  animation: slideIn 0.4s ease-out, slideOut 0.4s ease-out 2.6s;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
